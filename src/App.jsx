@@ -48,8 +48,8 @@ function App() {
         <BasicButton variant={variant} children={children} key={id} />
       ))}
       <br />
+      <br />
       <p>Basic Ratings</p>
-      {/* { name, Controlledvalue, component, typography, defaultValue } */}
       {ratings.map((props) => (
         <BasicRating {...props} key={props.id} />
       ))}
