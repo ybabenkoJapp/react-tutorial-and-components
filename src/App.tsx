@@ -35,6 +35,7 @@ import {
 import BasicFormControl from "./components/BasicFormControl";
 import BasicInput from "./components/BasicInput";
 import BasicImageAvatar from "./components/BasicImageAvatar";
+import BasicIcons from "./components/BasicIcons";
 
 const drawerWidth = 240;
 
@@ -162,6 +163,13 @@ export default function App() {
             Basic Badge
           </Typography>
           <BasicBadge />
+          <Divider />
+          <br />
+          <br />
+          <Typography variant="h6" noWrap component="div">
+            Basic Icons
+          </Typography>
+          <BasicIcons />
         </Box>
       </ThemeProvider>
     </Box>
