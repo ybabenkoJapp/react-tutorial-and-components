@@ -1,12 +1,15 @@
 import * as React from "react";
-import { useState } from "react";
 import "./App.css";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import { red } from "@mui/material/colors";
+import { styled } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import BasicButton from "./components/BasicButton";
 import BasicRating from "./components/BasicRating";
+import BasicBadge from "./components/BasicBadge";
 
 import {
   BrowserRouter as Router,
@@ -30,8 +33,18 @@ import {
   ListItemButton,
 } from "@mui/material";
 import BasicFormControl from "./components/BasicFormControl";
+import BasicInput from "./components/BasicInput";
+import BasicImageAvatar from "./components/BasicImageAvatar";
 
 const drawerWidth = 240;
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+  },
+});
 
 export default function App() {
   const buttons = [
@@ -103,31 +116,54 @@ export default function App() {
           <Divider />
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Divider />
-        <Typography variant="h6" noWrap component="div">
-          Basic Radio Group
-        </Typography>
-        <BasicFormControl />
-        <Divider />
-        <Typography variant="h6" noWrap component="div">
-          Basic buttons
-        </Typography>
-        <Divider />
-        {buttons.map(({ variant, children, id }) => (
-          <BasicButton variant={variant} children={children} key={id} />
-        ))}
-        <br />
-        <br />
-        <Divider />
-        <Typography variant="h6" noWrap component="div">
-          Basic Ratings
-        </Typography>
-        {ratings.map((props) => (
-          <BasicRating {...props} key={props.id} />
-        ))}
-        <Divider />
-      </Box>
+      <ThemeProvider theme={theme}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Typography variant="h6" noWrap component="div">
+            Basic Inputs
+          </Typography>
+          <BasicInput />
+          <Divider />
+          <br />
+          <br />
+          <Typography variant="h6" noWrap component="div">
+            Basic Radio Group
+          </Typography>
+          <BasicFormControl />
+          <Divider />
+          <br />
+          <br />
+          <Typography variant="h6" noWrap component="div">
+            Basic buttons
+          </Typography>
+          <Divider />
+          {buttons.map(({ variant, children, id }) => (
+            <BasicButton variant={variant} children={children} key={id} />
+          ))}
+          <br />
+          <br />
+          <Divider />
+          <Typography variant="h6" noWrap component="div">
+            Basic Ratings
+          </Typography>
+          {ratings.map((props) => (
+            <BasicRating {...props} key={props.id} />
+          ))}
+          <Divider />
+          <br />
+          <br />
+          <Typography variant="h6" noWrap component="div">
+            Basic Image avatar
+          </Typography>
+          <BasicImageAvatar />
+          <Divider />
+          <br />
+          <br />
+          <Typography variant="h6" noWrap component="div">
+            Basic Badge
+          </Typography>
+          <BasicBadge />
+        </Box>
+      </ThemeProvider>
     </Box>
   );
 }
