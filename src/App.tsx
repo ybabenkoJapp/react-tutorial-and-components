@@ -6,7 +6,6 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { red } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import BasicBadge from "./components/BasicBadge";
 
 import {
   BrowserRouter as Router,
@@ -30,6 +29,7 @@ import {
   ListItemButton,
 } from "@mui/material";
 import CardsItems from "./components/CardsItems";
+import UseRefExample from "./components/UseRefExample";
 
 const drawerWidth = 240;
 
@@ -86,7 +86,8 @@ export default function App() {
           component="main"
           sx={{ flexGrow: 1, p: 3, maxWidth: "100%", pt: 8 }}
         >
-          <CardsItems />
+          {/* <CardsItems /> */}
+          <UseRefExample />
         </Box>
       </ThemeProvider>
     </Box>
