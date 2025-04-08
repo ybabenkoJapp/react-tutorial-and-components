@@ -31,6 +31,7 @@ import {
 import CardsItems from "./components/CardsItems";
 import UseRefExample from "./components/UseRefExample";
 import Counter from "./components/Counter";
+import BasicUseIdExample from "./buildInHooks/BacisUseIdExample";
 
 const drawerWidth = 240;
 
@@ -43,6 +44,12 @@ const theme = createTheme({
 });
 
 export default function App() {
+  const [value, setValue] = React.useState("My test value");
+
+  function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value);
+  }
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -91,6 +98,20 @@ export default function App() {
           <UseRefExample />
           <Counter count={0} />
         </Box>
+        <br />
+        <br />
+        <br />
+        Input value: {value}
+        <BasicUseIdExample
+          label="Test label"
+          value={value}
+          onChange={onChangeHandler}
+        />
+        <BasicUseIdExample
+          label="Test label"
+          value={value}
+          onChange={onChangeHandler}
+        />
       </ThemeProvider>
     </Box>
   );
