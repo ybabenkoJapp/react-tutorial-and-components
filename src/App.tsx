@@ -32,6 +32,9 @@ import CardsItems from "./components/CardsItems";
 import UseRefExample from "./components/UseRefExample";
 import Counter from "./components/Counter";
 import BasicUseIdExample from "./buildInHooks/BacisUseIdExample";
+import { ThemeContext } from "@emotion/react";
+import ThemedButton from "./components/ThemedButton";
+import { MyThemeProvider } from "./buildInHooks/ThemeContext";
 
 const drawerWidth = 240;
 
@@ -112,6 +115,9 @@ export default function App() {
           value={value}
           onChange={onChangeHandler}
         />
+        <MyThemeProvider>
+          <ThemedButton />
+        </MyThemeProvider>
       </ThemeProvider>
     </Box>
   );
