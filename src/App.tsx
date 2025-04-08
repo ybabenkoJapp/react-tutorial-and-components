@@ -35,6 +35,7 @@ import BasicUseIdExample from "./buildInHooks/BacisUseIdExample";
 import { ThemeContext } from "@emotion/react";
 import ThemedButton from "./components/ThemedButton";
 import { MyThemeProvider } from "./buildInHooks/ThemeContext";
+import BasicUseEffectExample from "./buildInHooks/BasicUseEffectExample";
 
 const drawerWidth = 240;
 
@@ -118,6 +119,7 @@ export default function App() {
         <MyThemeProvider>
           <ThemedButton />
         </MyThemeProvider>
+        <BasicUseEffectExample userId={1} />
       </ThemeProvider>
     </Box>
   );
