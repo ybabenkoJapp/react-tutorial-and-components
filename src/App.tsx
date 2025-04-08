@@ -30,6 +30,7 @@ import {
 } from "@mui/material";
 import CardsItems from "./components/CardsItems";
 import UseRefExample from "./components/UseRefExample";
+import Counter from "./components/Counter";
 
 const drawerWidth = 240;
 
@@ -88,6 +89,7 @@ export default function App() {
         >
           {/* <CardsItems /> */}
           <UseRefExample />
+          <Counter count={0} />
         </Box>
       </ThemeProvider>
     </Box>
