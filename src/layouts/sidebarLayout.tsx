@@ -28,6 +28,11 @@ const theme = createTheme({
 });
 
 export default function SidebarLayout() {
+   const [value, setValue] = React.useState("My test value");
+
+   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+     setValue(e.target.value);
+   }
   const drawerWidth = 240;
   return (
     <Box sx={{ display: "flex" }}>
