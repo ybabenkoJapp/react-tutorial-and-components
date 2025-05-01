@@ -17,7 +17,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { MyThemeProvider } from "../buildInHooks/ThemeContext";
 import ThemedButton from "../components/ThemedButton";
 import BasicUseEffectExample from "../buildInHooks/BasicUseEffectExample";
-import { Outlet } from "react-router";
+import { Outlet, NavLink } from "react-router";
 
 const theme = createTheme({
   palette: {
@@ -28,11 +28,11 @@ const theme = createTheme({
 });
 
 export default function SidebarLayout() {
-   const [value, setValue] = React.useState("My test value");
+  const [value, setValue] = React.useState("My test value");
 
-   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
-     setValue(e.target.value);
-   }
+  function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value);
+  }
   const drawerWidth = 240;
   return (
     <Box sx={{ display: "flex" }}>
@@ -62,10 +62,14 @@ export default function SidebarLayout() {
         <Divider />
         <Box sx={{ overflow: "auto" }}>
           <List>
-            {["Radio Group", "Buttons", "Raiting"].map((text, index) => (
-              <ListItem key={text} disablePadding>
+            {[
+              { lable: "Radio Group", link: "/radio-group", id: 1 },
+              { lable: "Buttons", link: "/buttons", id: 2 },
+              { lable: "Raiting", link: "/raiting", id: 3 },
+            ].flatMap(({ lable, link, id }) => (
+              <ListItem key={id} disablePadding>
                 <ListItemButton>
-                  <ListItemText primary={text} />
+                  <NavLink to={link}>{lable}</NavLink>
                 </ListItemButton>
               </ListItem>
             ))}
