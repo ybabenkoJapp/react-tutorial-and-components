@@ -61,6 +61,13 @@ export default function SidebarLayout() {
             ))}
           </List>
           <Divider />
+          <List>
+            <ListItem>
+              <ListItemButton>
+                <NavLink to="/">Go home</NavLink>
+              </ListItemButton>
+            </ListItem>
+          </List>
         </Box>
       </Drawer>
       <Outlet />
