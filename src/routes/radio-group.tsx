@@ -100,7 +100,13 @@ export default function RadioGroupComponent() {
               />
             </RadioGroup>
             <FormHelperText>{helperText}</FormHelperText>
-            <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
+            {/* tried to add custom class modifier by className props */}
+            <Button
+              className="my-custom-btn-class-selector"
+              sx={{ mt: 1, mr: 1 }}
+              type="submit"
+              variant="outlined"
+            >
               Check Answer
             </Button>
           </FormControl>
