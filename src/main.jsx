@@ -6,7 +6,7 @@ import App from "./App.jsx";
 import SidebarLayout from "../src/layouts/sidebarLayout";
 import Buttons from "./routes/buttons.js";
 import Raiting from "./routes/raiting.js";
-import RadioGroup from "./routes/radio-group.js";
+import RadioGroupComponent from "./routes/radio-group.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,7 +16,7 @@ createRoot(document.getElementById("root")).render(
           <Route index element={<App />} />
           <Route path="/buttons" element={<Buttons />} />
           <Route path="/raiting" element={<Raiting />} />
-          <Route path="/radio-group" element={<RadioGroup />} />
+          <Route path="/radio-group" element={<RadioGroupComponent />} />
         </Route>
       </Routes>
     </BrowserRouter>
