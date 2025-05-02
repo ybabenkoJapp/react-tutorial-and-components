@@ -3,7 +3,6 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText,
   Box,
   Toolbar,
   Divider,
@@ -12,20 +11,7 @@ import {
   Typography,
   ListItemButton,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { MyThemeProvider } from "../buildInHooks/ThemeContext";
-import ThemedButton from "../components/ThemedButton";
-import BasicUseEffectExample from "../buildInHooks/BasicUseEffectExample";
 import { Outlet, NavLink } from "react-router";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: red[500],
-    },
-  },
-});
 
 export default function SidebarLayout() {
   const [value, setValue] = React.useState("My test value");
@@ -77,12 +63,6 @@ export default function SidebarLayout() {
           <Divider />
         </Box>
       </Drawer>
-      <ThemeProvider theme={theme}>
-        <MyThemeProvider>
-          <ThemedButton />
-        </MyThemeProvider>
-        <BasicUseEffectExample userId={1} />
-      </ThemeProvider>
       <Outlet />
     </Box>
   );
