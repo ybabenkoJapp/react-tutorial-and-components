@@ -58,43 +58,74 @@ export default function App() {
   function onThemeChangeHandler(theme: unknown) {
     let output;
 
-    if (theme) {
-      output = {
-        components: {
-          // Name of the component
-          MuiButton: {
-            styleOverrides: {
-              // Name of the slot
-              root: {
-                // Some CSS
-                size: theme,
-                // backgroundColor: "#121212",
-                variants: [
-                  {
-                    props: { variant: "outlined" },
-                    style: {
-                      // borderWidth: "31px",
-                      // size: theme,
-                      color: "#121212",
-                    },
-                  },
-                ],
-              },
-              // value: {
-              //   color: "#121212",
-              // },
-              // unit: {
-              //   color: "#888",
-              // },
-            },
-          },
-        },
+    if (typeof theme === "object") {
+      const myObjectStyleChanger = theme as {
+        type: "sizeChange" | "colorChange";
+        value: string;
       };
 
-      setMyTheme({
-        ...myTheme,
-        ...output,
-      });
+      if (myObjectStyleChanger && myObjectStyleChanger?.type === "sizeChange") {
+        output = {
+          components: {
+            // Name of the component
+            MuiButton: {
+              styleOverrides: {
+                // Name of the slot
+                root: {
+                  // Some CSS
+                  size: myObjectStyleChanger.value,
+                  // backgroundColor: "#121212",
+                  variants: [
+                    {
+                      props: { variant: "outlined" },
+                      style: {
+                        // size: theme,
+                        color: "#121212",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        };
+      }
+      if (
+        myObjectStyleChanger &&
+        myObjectStyleChanger?.type === "colorChange"
+      ) {
+        output = {
+          components: {
+            // Name of the component
+            MuiButton: {
+              styleOverrides: {
+                // Name of the slot
+                root: {
+                  // Some CSS
+                  backgroundColor: "#121212",
+                  color: myObjectStyleChanger.value,
+                  variants: [
+                    {
+                      props: { variant: "outlined" },
+                      style: {},
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        };
+      }
+
+      if (output && Object.keys(output).length > 0) {
+        setMyTheme({
+          ...myTheme,
+          components: {
+            ...myTheme.components,
+            ...output.components,
+          },
+        });
+      }
     }
   }
 
