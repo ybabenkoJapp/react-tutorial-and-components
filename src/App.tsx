@@ -13,8 +13,27 @@ import BasicButton from "./components/BasicButton";
 import MuiComponentModifier from "./components/MuiComponentModifier";
 import { useState } from "react";
 
+interface MyCustomTheme {
+  palette: {
+    primary: {
+      main: string;
+    };
+  };
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          variants: {
+            props: { variant: string };
+            style: Record<string, unknown>;
+          }[];
+        };
+      };
+    };
+  };
+}
 export default function App() {
-  const [myTheme, setMyTheme] = useState({
+  const [myTheme, setMyTheme] = useState<MyCustomTheme>({
     palette: {
       primary: {
         main: red[500],
