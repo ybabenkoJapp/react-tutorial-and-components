@@ -60,7 +60,6 @@ export default function App() {
     let output;
 
     if (theme) {
-      console.log("Theme changed", theme);
       output = {
         components: {
           // Name of the component
@@ -85,9 +84,9 @@ export default function App() {
               // value: {
               //   color: "#121212",
               // },
-              unit: {
-                color: "#888",
-              },
+              // unit: {
+              //   color: "#888",
+              // },
             },
           },
         },
@@ -116,9 +115,7 @@ export default function App() {
           >
             <BasicButton variant="contained" children="My contained" />
           </MuiComponentModifier>
-          {/* <BasicButton variant="contained" children="My contained" /> */}
         </MyThemeProvider>
-        <BasicUseEffectExample userId={1} />
       </ThemeProvider>
     </div>
   );
