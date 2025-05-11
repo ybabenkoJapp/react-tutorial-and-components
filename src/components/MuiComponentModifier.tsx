@@ -19,6 +19,7 @@ export default function MuiComponentModifier({
   children,
 }) {
   const [componentSizeValue, setComponentSizeValue] = useState("small");
+  const [componentColorValue, setComponentColorValue] = useState("primary");
   const commonComponentProps = {
     MuiButton: {
       size: { small: "small", medium: "medium", large: "large" },
@@ -62,6 +63,12 @@ export default function MuiComponentModifier({
     setComponentSizeValue((event.target as HTMLInputElement).value);
   };
 
+  const handleComponentColorChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setComponentColorValue((event.target as HTMLInputElement).value);
+  };
+
   return (
     <Box>
       <p>MUI component modifier</p>
@@ -90,7 +97,7 @@ export default function MuiComponentModifier({
             value={componentSizeValue}
             onChange={(event) => {
               handleComponentSizeChange(event);
-              onThemeChange(event?.target?.value);
+              onThemeChange({type: 'sizeChange',value: event?.target?.value});
             }}
           >
             <FormControlLabel value="small" control={<Radio />} label="Small" />
@@ -100,6 +107,47 @@ export default function MuiComponentModifier({
               label="Medium"
             />
             <FormControlLabel value="large" control={<Radio />} label="Large" />
+          </RadioGroup>
+        </FormControl>
+      </Stack>
+      <Stack
+        spacing={2}
+        direction="row"
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <FormControl>
+          <FormLabel id="demo-row-radio-buttons-group-label">
+            Element color: {componentColorValue}
+          </FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+            value={componentColorValue}
+            onChange={(event) => {
+              handleComponentColorChange(event);
+              onThemeChange({
+                type: "colorChange",
+                value: event?.target?.value,
+              });
+            }}
+          >
+            {[
+              "primary",
+              "secondary",
+              "success",
+              "error",
+              "info",
+              "warning",
+            ].map((item) => (
+              <FormControlLabel
+                value={item}
+                key={item}
+                control={<Radio />}
+                label={item}
+              />
+            ))}
           </RadioGroup>
         </FormControl>
       </Stack>
