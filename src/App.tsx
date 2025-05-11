@@ -7,7 +7,6 @@ import "@fontsource/roboto/700.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { MyThemeProvider } from "./buildInHooks/ThemeContext";
 import ThemedButton from "./components/ThemedButton";
-import BasicUseEffectExample from "./buildInHooks/BasicUseEffectExample";
 import { green, red } from "@mui/material/colors";
 import { Button } from "@mui/material";
 import BasicButton from "./components/BasicButton";
