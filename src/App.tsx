@@ -12,6 +12,7 @@ import { Button } from "@mui/material";
 import BasicButton from "./components/BasicButton";
 import MuiComponentModifier from "./components/MuiComponentModifier";
 import { useState } from "react";
+// import { deepmerge } from "@mui/utils"; // commented for a while
 
 interface MyCustomTheme {
   palette: {
