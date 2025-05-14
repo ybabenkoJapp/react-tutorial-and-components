@@ -14,6 +14,7 @@ import MuiComponentModifier from "./components/MuiComponentModifier";
 import { useState } from "react";
 // import { deepmerge } from "@mui/utils"; // commented for a while
 
+// logic in app.tsx - should be moved to a custom context
 interface MyCustomTheme {
   palette: {
     primary: {

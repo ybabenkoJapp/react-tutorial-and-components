@@ -20,6 +20,8 @@ export default function MuiComponentModifier({
 }) {
   const [componentSizeValue, setComponentSizeValue] = useState("small");
   const [componentColorValue, setComponentColorValue] = useState("primary");
+  // remove it from here once all is set
+  // TODO: add function to handle theme change in context without props drilling
   const commonComponentProps = {
     MuiButton: {
       size: { small: "small", medium: "medium", large: "large" },
