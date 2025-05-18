@@ -1,6 +1,7 @@
 import { createContext } from "react";
 // import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
+import { createTheme } from "@mui/material";
 
 interface MyCustomTheme {
   palette: {
@@ -22,7 +23,7 @@ interface MyCustomTheme {
   };
 }
 
-export const MyThemeContext = createContext({
+const defaultTheme = createTheme({
   palette: {
     primary: {
       main: red[500],
@@ -48,4 +49,6 @@ export const MyThemeContext = createContext({
       },
     },
   },
-}); // here we create a context with a default value of 1
+})
+
+export const MyThemeContext = createContext({ myCustomTheme: defaultTheme, setTheme: () => { }, updateThemeSettings: () => { } }); // here we create a context with a default value of 1
