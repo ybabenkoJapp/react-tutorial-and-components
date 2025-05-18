@@ -1,5 +1,6 @@
 import {
   Box,
+  createTheme,
   FormControl,
   FormControlLabel,
   FormHelperText,
@@ -9,15 +10,15 @@ import {
   Radio,
   RadioGroup,
   Stack,
+  ThemeProvider,
 } from "@mui/material";
-import * as React from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MyThemeContext } from "../themeProviders/MyThemeContext";
 
-export default function MuiComponentModifier({
-  onThemeChange,
-  size,
-  children,
-}) {
+export default function MuiComponentModifier({ children }) {
+  const myCustomThemeContext = useContext(MyThemeContext);
+
+  const theme = createTheme(myCustomThemeContext);
   const [componentSizeValue, setComponentSizeValue] = useState("small");
   const [componentColorValue, setComponentColorValue] = useState("primary");
   // remove it from here once all is set
@@ -72,87 +73,100 @@ export default function MuiComponentModifier({
   };
 
   return (
-    <Box>
-      <p>MUI component modifier</p>
-      <Stack
-        spacing={2}
-        direction="row"
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        {children}
-      </Stack>
-      <Stack
-        spacing={2}
-        direction="row"
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        <FormControl>
-          <FormLabel id="demo-row-radio-buttons-group-label">
-            Element size: {componentSizeValue}
-          </FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-            value={componentSizeValue}
-            onChange={(event) => {
-              handleComponentSizeChange(event);
-              onThemeChange({type: 'sizeChange',value: event?.target?.value});
-            }}
-          >
-            <FormControlLabel value="small" control={<Radio />} label="Small" />
-            <FormControlLabel
-              value="medium"
-              control={<Radio />}
-              label="Medium"
-            />
-            <FormControlLabel value="large" control={<Radio />} label="Large" />
-          </RadioGroup>
-        </FormControl>
-      </Stack>
-      <Stack
-        spacing={2}
-        direction="row"
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
-        <FormControl>
-          <FormLabel id="demo-row-radio-buttons-group-label">
-            Element color: {componentColorValue}
-          </FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-            value={componentColorValue}
-            onChange={(event) => {
-              handleComponentColorChange(event);
-              onThemeChange({
-                type: "colorChange",
-                value: event?.target?.value,
-              });
-            }}
-          >
-            {[
-              "primary",
-              "secondary",
-              "success",
-              "error",
-              "info",
-              "warning",
-            ].map((item) => (
+    <ThemeProvider theme={theme}>
+      <Box>
+        <p>MUI component modifier</p>
+        <Stack
+          spacing={2}
+          direction="row"
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          {children}
+        </Stack>
+        <Stack
+          spacing={2}
+          direction="row"
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <FormControl>
+            <FormLabel id="demo-row-radio-buttons-group-label">
+              Element size: {componentSizeValue}
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              value={componentSizeValue}
+              onChange={(event) => {
+                handleComponentSizeChange(event);
+                onThemeChange({
+                  type: "sizeChange",
+                  value: event?.target?.value,
+                });
+              }}
+            >
               <FormControlLabel
-                value={item}
-                key={item}
+                value="small"
                 control={<Radio />}
-                label={item}
+                label="Small"
               />
-            ))}
-          </RadioGroup>
-        </FormControl>
-      </Stack>
-    </Box>
+              <FormControlLabel
+                value="medium"
+                control={<Radio />}
+                label="Medium"
+              />
+              <FormControlLabel
+                value="large"
+                control={<Radio />}
+                label="Large"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Stack>
+        <Stack
+          spacing={2}
+          direction="row"
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <FormControl>
+            <FormLabel id="demo-row-radio-buttons-group-label">
+              Element color: {componentColorValue}
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              value={componentColorValue}
+              onChange={(event) => {
+                handleComponentColorChange(event);
+                onThemeChange({
+                  type: "colorChange",
+                  value: event?.target?.value,
+                });
+              }}
+            >
+              {[
+                "primary",
+                "secondary",
+                "success",
+                "error",
+                "info",
+                "warning",
+              ].map((item) => (
+                <FormControlLabel
+                  value={item}
+                  key={item}
+                  control={<Radio />}
+                  label={item}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+        </Stack>
+      </Box>
+    </ThemeProvider>
   );
 }
