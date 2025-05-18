@@ -7,7 +7,7 @@ import { ToggleButtomThemeContext } from "./buildInHooks/ToggleButtomThemeContex
 import ThemedButton from "./components/ThemedButton";
 import { Button } from "@mui/material";
 import BasicButton from "./components/BasicButton";
-import MuiComponentModifier from "./components/MuiComponentModifier";
+import MyCustomThemeWrapper from "./components/MyCustomThemeWrapper";
 // import { deepmerge } from "@mui/utils"; // commented for a while
 
 // logic in app.tsx - should be moved to a custom context
@@ -19,11 +19,11 @@ export default function App() {
         <Button variant="text">Text</Button>
         <Button variant="contained">Contained</Button>
         <Button variant="outlined">Outlined</Button>
-        <MuiComponentModifier>
+        <MyCustomThemeWrapper>
           <BasicButton variant="contained" children="My contained" />
           <Button variant="outlined" children="My outlined" />
           <Button variant="text" children="My text" />
-        </MuiComponentModifier>
+        </MyCustomThemeWrapper>
       </ToggleButtomThemeContext>
     </div>
   );
