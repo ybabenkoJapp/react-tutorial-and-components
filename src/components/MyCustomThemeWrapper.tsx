@@ -15,10 +15,10 @@ import {
 import { useContext, useState } from "react";
 import { MyThemeContext } from "../themeProviders/MyThemeContext";
 
-export default function MuiComponentModifier({ children }) {
+export default function MyCustomThemeWrapper({ children }) {
   const myCustomThemeContext = useContext(MyThemeContext);
 
-  const theme = createTheme(myCustomThemeContext);
+  const theme = createTheme(myCustomThemeContext.myCustomTheme);
   const [componentSizeValue, setComponentSizeValue] = useState("small");
   const [componentColorValue, setComponentColorValue] = useState("primary");
   // remove it from here once all is set
