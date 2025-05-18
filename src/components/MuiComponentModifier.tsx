@@ -101,10 +101,6 @@ export default function MuiComponentModifier({ children }) {
               value={componentSizeValue}
               onChange={(event) => {
                 handleComponentSizeChange(event);
-                onThemeChange({
-                  type: "sizeChange",
-                  value: event?.target?.value,
-                });
               }}
             >
               <FormControlLabel
@@ -142,10 +138,6 @@ export default function MuiComponentModifier({ children }) {
               value={componentColorValue}
               onChange={(event) => {
                 handleComponentColorChange(event);
-                onThemeChange({
-                  type: "colorChange",
-                  value: event?.target?.value,
-                });
               }}
             >
               {[
