@@ -3,77 +3,71 @@ import {
   createTheme,
   FormControl,
   FormControlLabel,
-  FormHelperText,
   FormLabel,
-  Input,
-  InputLabel,
   Radio,
   RadioGroup,
   Stack,
   ThemeProvider,
 } from "@mui/material";
-import { useContext, useState } from "react";
-import { MyThemeContext } from "../themeProviders/MyThemeContext";
+import { useContext, useState, useCallback, useMemo } from "react";
+import { MyThemeContext } from "../myCustomContexts/MyThemeContext";
+import { orange } from "@mui/material/colors";
 
 export default function MyCustomThemeWrapper({ children }) {
   const myCustomThemeContext = useContext(MyThemeContext);
 
-  const theme = createTheme(myCustomThemeContext.myCustomTheme);
-  const [componentSizeValue, setComponentSizeValue] = useState("small");
-  const [componentColorValue, setComponentColorValue] = useState("primary");
+  const [componentSizeValue, setComponentSizeValue] = useState<
+    "small" | "medium" | "large"
+  >("medium");
+  const [componentColorValue, setComponentColorValue] = useState<
+    | "secondary"
+    | "inherit"
+    | "primary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning"
+  >("primary");
   // remove it from here once all is set
   // TODO: add function to handle theme change in context without props drilling
-  const commonComponentProps = {
-    MuiButton: {
-      size: { small: "small", medium: "medium", large: "large" },
-      variant: { text: "text", contained: "contained", outlined: "outlined" },
-      disabled: false,
-      color: {
-        inherit: "inherit",
-        primary: "primary",
-        secondary: "secondary",
-        success: "success",
-        error: "error",
-        info: "info",
-        warning: "warning",
-      },
-      loading: false, // null | boolean
-    },
-    MuiRadio: {
-      checked: false,
-      color: {
-        inherit: "inherit",
-        primary: "primary",
-        secondary: "secondary",
-        success: "success",
-        error: "error",
-        info: "info",
-        warning: "warning",
-      },
-      disabled: false,
-      size: { small: "small", medium: "medium", large: "large" },
-      value: 0, // number
-    },
-    MuiRating: {
-      size: { small: "small", medium: "medium", large: "large" },
-      value: 0, // number
-    },
-  };
 
-  const handleComponentSizeChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setComponentSizeValue((event.target as HTMLInputElement).value);
-  };
+  const handleComponentSizeChange = useCallback((event) => {
+    setComponentSizeValue(event.target.value);
+  }, []);
 
-  const handleComponentColorChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setComponentColorValue((event.target as HTMLInputElement).value);
-  };
+  const handleComponentColorChange = useCallback((event) => {
+    setComponentColorValue(event.target.value);
+  }, []);
+
+  const myCachedTheme = useMemo(() => {
+    const paletteColor = orange[500];
+
+    return createTheme({
+      palette: {
+        primary: {
+          main: paletteColor,
+        },
+      },
+      components: {
+        MuiButton: {
+          defaultProps: {
+            size: componentSizeValue,
+            color: componentColorValue,
+          },
+          styleOverrides: {
+            root: {
+              // addition styles
+            },
+          },
+        },
+      },
+    });
+  }, [componentSizeValue, componentColorValue]);
+
+  const theme = createTheme(myCustomThemeContext.myCustomTheme);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={myCachedTheme}>
       <Box>
         <p>MUI component modifier</p>
         <Stack

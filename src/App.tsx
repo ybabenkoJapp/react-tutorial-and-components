@@ -20,7 +20,8 @@ export default function App() {
         <Button variant="contained">Contained</Button>
         <Button variant="outlined">Outlined</Button>
         <MyCustomThemeWrapper>
-          <BasicButton variant="contained" children="My contained" />
+          {/* <BasicButton variant="contained" children="My contained" /> */}
+          <Button variant="contained" children="My contained" />
           <Button variant="outlined" children="My outlined" />
           <Button variant="text" children="My text" />
         </MyCustomThemeWrapper>
