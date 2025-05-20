@@ -66,6 +66,9 @@ export default function MyCustomThemeWrapper({ children }) {
 
   const theme = createTheme(myCustomThemeContext.myCustomTheme);
 
+  const {updateThemeSettings} = myCustomThemeContext;
+  
+
   return (
     <ThemeProvider theme={myCachedTheme}>
       <Box>
