@@ -14,7 +14,7 @@ const defaultThemeContext: ThemeContectType = {
 export const ThemeContext =
   createContext<ThemeContectType>(defaultThemeContext);
 
-export const MyThemeProvider = function ({
+export const ToggleButtomThemeContext = function ({
   children,
 }: {
   children: React.ReactNode;

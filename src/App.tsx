@@ -1,32 +1,31 @@
-import * as React from "react";
 import "./App.css";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { MyThemeProvider } from "./buildInHooks/ThemeContext";
+import { ToggleButtomThemeContext } from "./buildInHooks/ToggleButtomThemeContext";
 import ThemedButton from "./components/ThemedButton";
-import BasicUseEffectExample from "./buildInHooks/BasicUseEffectExample";
-import { red } from "@mui/material/colors";
+import { Button } from "@mui/material";
+import BasicButton from "./components/BasicButton";
+import MyCustomThemeWrapper from "./components/MyCustomThemeWrapper";
+// import { deepmerge } from "@mui/utils"; // commented for a while
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: red[500],
-    },
-  },
-});
-
+// logic in app.tsx - should be moved to a custom context
 export default function App() {
   return (
     <div>
-      <ThemeProvider theme={theme}>
-        <MyThemeProvider>
-          <ThemedButton />
-        </MyThemeProvider>
-        <BasicUseEffectExample userId={1} />
-      </ThemeProvider>
+      <ToggleButtomThemeContext>
+        <ThemedButton />
+        <Button variant="text">Text</Button>
+        <Button variant="contained">Contained</Button>
+        <Button variant="outlined">Outlined</Button>
+        <MyCustomThemeWrapper>
+          {/* <BasicButton variant="contained" children="My contained" /> */}
+          <Button variant="contained" children="My contained" />
+          <Button variant="outlined" children="My outlined" />
+          <Button variant="text" children="My text" />
+        </MyCustomThemeWrapper>
+      </ToggleButtomThemeContext>
     </div>
   );
 }
