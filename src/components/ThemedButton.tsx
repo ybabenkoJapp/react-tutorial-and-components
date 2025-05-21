@@ -1,5 +1,4 @@
-import * as React from "react";
-import useTheme from "../buildInHooks/useTheme";
+import useTheme from "../myCustomHooks/useTheme";
 
 export default function ThemedButton() {
   const { theme, toggleTheme } = useTheme();
