@@ -19,6 +19,16 @@ const initialTheme = {
   },
 };
 
+const colorMap = {
+  primary: red[500],
+  secondary: orange[500],
+  success: green[500],
+  error: red[500],
+  info: blue[500],
+  warning: yellow[700],
+  inherit: grey[500],
+};
+
 export default function MyCustomThemeWrapper({
   children,
 }: {
@@ -34,46 +44,30 @@ export default function MyCustomThemeWrapper({
 
   const updateMyCustomThemeSettings = useCallback(
     (newMyCustomThemeSettings: Partial<Theme>) => {
-      setMyCustomTheme((prevTheme) =>
-        createTheme({
+      setMyCustomTheme((prevTheme) => {
+        return createTheme({
           ...prevTheme,
           ...newMyCustomThemeSettings,
           palette: {
-            ...prevTheme.palette,
             ...(newMyCustomThemeSettings.palette || {}),
           },
           components: {
-            ...prevTheme.components,
             ...(newMyCustomThemeSettings.components || {}),
           },
-        }),
-      );
+        });
+      });
     },
-    [],
+    [componentSizeValue, componentColorValue],
   );
 
   function undateMyCustomThemeElementProperty(
     property: unknown,
     type: "color" | "size",
   ) {
-    if (type === "color") {
-      setComponentColorValue(property as MuiElementColor);
-    } else if (type === "size") {
-      setComponentSizeValue(property as MuiElementSize);
-    }
-
     switch (type) {
       case "color": {
         const color = property as MuiElementColor;
-        const colorMap = {
-          primary: red[500],
-          secondary: orange[500],
-          success: green[500],
-          error: red[500],
-          info: blue[500],
-          warning: yellow[700],
-          inherit: grey[500],
-        };
+      
         setComponentColorValue(color);
 
         updateMyCustomThemeSettings({
@@ -86,6 +80,7 @@ export default function MyCustomThemeWrapper({
             MuiButton: {
               defaultProps: {
                 color: color,
+                size: componentSizeValue,
               },
             },
           },
@@ -95,6 +90,11 @@ export default function MyCustomThemeWrapper({
       default: {
         setComponentSizeValue(property as MuiElementSize);
         updateMyCustomThemeSettings({
+          palette: {
+            primary: {
+              main: colorMap[componentColorValue] || red[500],
+            },
+          },
           components: {
             MuiButton: {
               defaultProps: {
