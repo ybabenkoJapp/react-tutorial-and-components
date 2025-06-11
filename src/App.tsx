@@ -31,11 +31,12 @@ export default function App() {
       </ThemeProvider>
 
       <MyCustomThemeWrapper>
-        {/* <Button variant="text">Text</Button> */}
-        {/* <Button variant="contained">Contained</Button>
-        <Button variant="outlined">Outlined</Button> */}
-        <div>Hello!</div>
-        <MyTestComponent></MyTestComponent>
+        <div>Hello from App component!</div>
+        <MyTestComponent>
+          <Button variant="contained">Contained</Button>
+          <Button variant="outlined">Outlined</Button>
+          <Button variant="text">Text</Button>
+        </MyTestComponent>
       </MyCustomThemeWrapper>
     </div>
   );
