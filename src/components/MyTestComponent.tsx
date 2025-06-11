@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
+import { Button,Stack } from "@mui/material";
 import { useMyCustomTheme } from "../myCustomHooks/useMyCustomTheme";
 
-export default function MyTestComponent() {
+export default function MyTestComponent({children}) {
   const {
     componentSizeValue,
     componentColorValue,
@@ -15,7 +15,18 @@ export default function MyTestComponent() {
       <p>Current Size: {componentSizeValue}</p>
       <p>Current Color: {componentColorValue}</p>
       <Button variant="contained">Test Button</Button>
-      {/* Радіокнопки для зміни розміру */}
+      {children && (
+        <Stack
+          direction="row"
+          spacing={4}
+          sx={{
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          {children}
+        </Stack>
+      )}
       <div>
         <label>Element Size: {componentSizeValue}</label>
         <div style={{ display: "flex", gap: "10px" }}>
@@ -48,8 +59,6 @@ export default function MyTestComponent() {
           </label>
         </div>
       </div>
-
-      {/* Радіокнопки для зміни кольору */}
       <div>
         <label>Element Color: {componentColorValue}</label>
         <div style={{ display: "flex", gap: "10px" }}>
