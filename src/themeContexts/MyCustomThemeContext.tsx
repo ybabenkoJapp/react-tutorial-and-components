@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import MyCustomTheme from "../appTypes/MyCustomTheme";
+import MyCustomThemeContextInterface from "../appTypes/MyCustomThemeContextInterface";
 
-export const MyCustomThemeContext = createContext<MyCustomTheme | undefined>(
-    undefined,
-  );
+export const MyCustomThemeContext = createContext<
+  MyCustomThemeContextInterface | undefined
+>(undefined);
