@@ -44,6 +44,10 @@ export const MyCustomThemeProvider = function ({
     setButtonConfig((prevConfig) => ({ ...prevConfig, ...newConfig }));
   }, []);
 
+  const resetButtonConfig = useCallback(() => {
+    setButtonConfig(defaultButtonConfig);
+  }, []);
+
   // Функція для оновлення загальних властивостей елементів теми (колір/розмір)
   // Я зробив її більш чистою, щоб вона просто оновлювала стани, а не створювала тему тут
   const undateMyCustomThemeElementProperty = useCallback(
@@ -119,7 +123,10 @@ export const MyCustomThemeProvider = function ({
   const myCustomThemeContextValue = useMemo(
     () => ({
       myCustomTheme,
-      setMyCustomTheme: (theme: Theme) => console.warn("setMyCustomTheme не експонується безпосередньо для зовнішнього використання. Тема управляється всередині."),
+      setMyCustomTheme: (theme: Theme) =>
+        console.warn(
+          "setMyCustomTheme не експонується безпосередньо для зовнішнього використання. Тема управляється всередині.",
+        ),
       updateMyCustomThemeSettings,
       componentSizeValue,
       componentColorValue,
@@ -127,6 +134,7 @@ export const MyCustomThemeProvider = function ({
       handleComponentColorChange,
       buttonConfig, // Додаємо buttonConfig до контексту
       updateButtonConfig, // Додаємо updateButtonConfig до контексту
+      resetButtonConfig, // Додаємо функцію скидання
     }),
     [
       myCustomTheme,
@@ -137,6 +145,7 @@ export const MyCustomThemeProvider = function ({
       handleComponentColorChange,
       buttonConfig,
       updateButtonConfig,
+      resetButtonConfig,
     ],
   );
 
