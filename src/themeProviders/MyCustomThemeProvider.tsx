@@ -1,55 +1,3 @@
-// commented due code merging start
-// import { ThemeProvider } from "@mui/material/styles";
-// import MyCustomTheme from "../appTypes/MyCustomTheme";
-// import { MyCustomThemeContext } from "../themeContexts/MyCustomThemeContext";
-// import MyCustomThemeContextInterface from "../appTypes/MyCustomThemeContextInterface";
-// import { useState } from "react";
-// import ButtonStyleConfig from "../appTypes/ButtonStyleConfig";
-
-// Інтерфейс для контексту
-// interface ButtonThemeContextType {
-//   buttonConfig: ButtonStyleConfig;
-//   updateButtonConfig: (newConfig: Partial<ButtonStyleConfig>) => void;
-// }
-
-// Дефолтні значення для кнопки
-// const defaultButtonConfig: ButtonStyleConfig = {
-//   backgroundColor: '#1976d2', // MUI primary.main за замовчуванням
-//   textColor: '#FFFFFF',
-//   hoverColor: '#115293', // Затемнений primary.dark
-//   borderRadius: '4px',
-//   padding: '6px 16px',
-//   fontSize: '0.875rem',
-//   boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)',
-// };
-
-// Створення контексту
-// const ButtonThemeContext = createContext<ButtonThemeContextType | undefined>(undefined);
-
-// export const MyCustomThemeProvider = function ({
-//   themeContext,
-//   theme,
-//   children,
-// }: {
-//   themeContext: MyCustomThemeContextInterface;
-//   theme: MyCustomTheme;
-//   children: React.ReactNode;
-// }) {
-//   const [buttonConfig, setButtonConfig] =
-//     useState<ButtonStyleConfig>(defaultButtonConfig);
-
-//   const updateButtonConfig = (newConfig: Partial<ButtonStyleConfig>) => {
-//     setButtonConfig((prevConfig) => ({ ...prevConfig, ...newConfig }));
-//   };
-//   return (
-//     <MyCustomThemeContext.Provider value={{themeContext, buttonConfig, updateButtonConfig }}>
-//       <ThemeProvider theme={theme}>{children}</ThemeProvider>
-//     </MyCustomThemeContext.Provider>
-//   );
-// };
-// commented due code merging end
-
-// new code start
 import { ThemeProvider, createTheme, Theme } from "@mui/material/styles";
 import { MyCustomThemeContext } from "../themeContexts/MyCustomThemeContext";
 import { useCallback, useMemo, useState, ReactNode } from "react";
@@ -198,4 +146,3 @@ export const MyCustomThemeProvider = function ({
     </MyCustomThemeContext.Provider>
   );
 };
-// new code end
