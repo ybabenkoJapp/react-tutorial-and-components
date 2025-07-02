@@ -7,6 +7,7 @@ import {
   TextField,
   Slider,
   InputAdornment,
+  Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { MyCustomThemeContext } from "../themeContexts/MyCustomThemeContext"; // Імпорт вашого контексту
@@ -27,7 +28,7 @@ const ThemeSettingsPanel: React.FC<ThemeSettingsPanelProps> = ({
     throw new Error('ThemeSettingsPanel має використовуватися всередині MyCustomThemeProvider');
   }
   // Деструктуризація buttonConfig та updateButtonConfig з контексту
-  const { buttonConfig, updateButtonConfig } = context;
+  const { buttonConfig, updateButtonConfig, resetButtonConfig } = context;
 
   // Обробники для зміни властивостей стилю кнопки
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +63,10 @@ const ThemeSettingsPanel: React.FC<ThemeSettingsPanelProps> = ({
 
   const handleBoxShadowChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateButtonConfig({ boxShadow: e.target.value });
+  };
+
+  const handleResetClick = () => {
+    resetButtonConfig(); // Викликаємо функцію скидання з контексту
   };
 
   return (
@@ -167,6 +172,15 @@ const ThemeSettingsPanel: React.FC<ThemeSettingsPanelProps> = ({
           multiline
           rows={2}
         />
+
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={handleResetClick}
+          sx={{ mt: 2 }}
+        >
+          Скинути налаштування кнопки
+        </Button>
       </Box>
     </Drawer>
   );
