@@ -153,9 +153,6 @@ const MyTestComponent: React.FC<MyTestComponentProps> = ({ children }) => {
         maxWidth: 600,
       }}
     >
-      <Typography variant="h6" gutterBottom>
-        Компонент MyTestComponent:
-      </Typography>
       <Box sx={{ display: "flex", gap: 2 }}>{children}</Box>
     </Box>
   );
