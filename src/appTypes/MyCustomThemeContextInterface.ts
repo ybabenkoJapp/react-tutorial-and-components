@@ -13,6 +13,7 @@ interface MyCustomThemeContextInterface {
   // --- НОВІ ВЛАСТИВОСТІ ДЛЯ ДИНАМІЧНОЇ КНОПКИ ---
   buttonConfig: ButtonStyleConfig;
   updateButtonConfig: (newConfig: Partial<ButtonStyleConfig>) => void;
+  resetButtonConfig: () => void;
 }
 
 export default MyCustomThemeContextInterface;
