@@ -48,7 +48,7 @@ export default function MyCustomThemeMainComponent() {
           minHeight: "calc(100vh - 64px)",
         }}
       >
-        <Stack>
+        <Stack sx={{ gap: 2 }}>
           <Box>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Динамічна тема MUI
@@ -61,34 +61,80 @@ export default function MyCustomThemeMainComponent() {
               Налаштувати кнопку
             </Button>
           </Box>
-          <Box>
+          <Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
             <Typography variant="h6" sx={{ mt: 4 }}>
               Інші кнопки (контролюються загальною темою):
             </Typography>
-
-            <Button variant="contained" onClick={handleDynamicButtonClick}>
-              Динамічна кнопка
-            </Button>
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <Button variant="contained" onClick={handleDynamicButtonClick}>
+                Динамічна кнопка "contained"
+              </Button>
+              <Button variant="outlined" onClick={handleDynamicButtonClick}>
+                Динамічна кнопка "outlined"
+              </Button>
+              <Button variant="text" onClick={handleDynamicButtonClick}>
+                Динамічна кнопка "text"
+              </Button>
+            </Box>
           </Box>
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <Button
-              variant="contained"
-              onClick={() => handleComponentColorChange("secondary")}
-            >
-              Вторинний колір (Загальна тема)
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={() => handleComponentSizeChange("large")}
-            >
-              Великий розмір (Загальна тема)
-            </Button>
-            <Button
-              variant="text"
-              onClick={() => handleComponentColorChange("success")}
-            >
-              Колір успіху (Загальна тема)
-            </Button>
+          <Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Розміри кнопок
+            </Typography>
+            <Box>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <Button
+                  variant="outlined"
+                  onClick={() => handleComponentSizeChange("small")}
+                >
+                  Малий розмір (Загальна тема)
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={() => handleComponentSizeChange("regular")}
+                >
+                  Загальни розмір (Загальна тема)
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={() => handleComponentSizeChange("large")}
+                >
+                  Великий розмір (Загальна тема)
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Кольори кнопок
+            </Typography>
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <Button
+                variant="contained"
+                onClick={() => handleComponentColorChange("secondary")}
+              >
+                Вторинний колір (Загальна тема)
+              </Button>
+              <Button
+                variant="text"
+                onClick={() => handleComponentColorChange("primary")}
+              >
+                Колір головний (Загальна тема)
+              </Button>
+              <Button
+                variant="text"
+                onClick={() => handleComponentColorChange("success")}
+              >
+                Колір успіху (Загальна тема)
+              </Button>
+              <Button
+                variant="text"
+                onClick={() => handleComponentColorChange("warning")}
+              >
+                Колір попередження (Загальна тема)
+              </Button>
+            </Box>
           </Box>
           <Box>
             <MyTestComponent>
